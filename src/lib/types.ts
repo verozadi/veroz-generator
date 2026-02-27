@@ -41,7 +41,7 @@ export type Style =
     | 'Emoji';
 
 export type AIModel = 'pollinations' | 'huggingface' | 'together';
-export type PromptAI = 'gemini' | 'groq' | 'huggingface';
+export type PromptAI = string;
 export type ReferenceMode = 'full' | 'face' | 'body';
 export type TextPosition = 'top' | 'center' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 

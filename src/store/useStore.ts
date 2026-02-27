@@ -74,7 +74,7 @@ const defaultForm: GenerateFormState = {
     customHeight: 1024,
     generateCount: 1,
     aiModel: 'pollinations',
-    promptAI: 'gemini',
+    promptAI: 'gemini:gemini-pro',
     isTransparent: true,
     bgColor: '#ffffff',
     textFont: 'Inter',

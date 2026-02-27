@@ -112,9 +112,30 @@ export default function PromptArea() {
                     onChange={(e) => setForm({ promptAI: e.target.value as typeof form.promptAI })}
                     className="input-field w-auto flex-1 py-2 text-xs"
                 >
-                    <option value="gemini">🤖 Gemini AI</option>
-                    <option value="groq">⚡ Groq (Llama 3)</option>
-                    <option value="huggingface">🤗 Hugging Face</option>
+                    <optgroup label="Gemini AI">
+                        <option value="gemini:gemini-2.0-flash">🤖 Gemini 2.0 Flash</option>
+                    </optgroup>
+                    <optgroup label="Groq (Super Cepat)">
+                        <option value="groq:llama-3.1-8b-instant">⚡ Llama 3.1 8B</option>
+                        <option value="groq:llama-3.3-70b-versatile">⚡ Llama 3.3 70B</option>
+                    </optgroup>
+                    <optgroup label="OpenRouter">
+                        <option value="openrouter:openrouter/auto">🌐 Auto (Best Free)</option>
+                        <option value="openrouter:meta-llama/llama-3-8b-instruct:free">🌐 Llama 3 8B (Free)</option>
+                    </optgroup>
+                    <optgroup label="Together AI">
+                        <option value="together:meta-llama/Llama-3-8b-chat-hf">🤝 Llama 3 8B</option>
+                        <option value="together:mistralai/Mixtral-8x7B-Instruct-v0.1">🤝 Mixtral 8x7B</option>
+                    </optgroup>
+                    <optgroup label="Mistral AI">
+                        <option value="mistral:mistral-small-latest">🌪️ Mistral Small</option>
+                    </optgroup>
+                    <optgroup label="DeepSeek AI">
+                        <option value="deepseek:deepseek-chat">🐋 DeepSeek Chat</option>
+                    </optgroup>
+                    <optgroup label="Lainnya">
+                        <option value="huggingface:default">🤗 Hugging Face</option>
+                    </optgroup>
                 </select>
 
                 {/* AI Assist Button */}
