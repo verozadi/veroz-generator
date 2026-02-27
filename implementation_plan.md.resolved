@@ -1,0 +1,79 @@
+# Technical Roadmap: Veroz Generator (Advanced Edition)
+
+Aplikasi web berbasis Next.js dan Tailwind CSS untuk menghasilkan gambar AI (khususnya Stiker, Banner, Wallpaper) dengan fitur profesional, UI futuristik, dan manajemen koleksi tingkat lanjut.
+
+## 1. Spesifikasi Desain & Antarmuka (UI/UX)
+- **Tema Warna**: Gradien futuristik ungu-pink-biru (contoh: `bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900`).
+- **Layout**: Modern, *card-based layout* dengan efek *glassmorphism* (latar transparan blur).
+- **Animasi & Interaksi**: Halus dan interaktif menggunakan `framer-motion` (efek transisi, hover, modal).
+- **Responsivitas**: 100% *Mobile-friendly*.
+
+## 2. Fitur Utama & Solusi Teknis
+
+### A. Kategori Output (Rasio Resolusi)
+Sistem mendukung **Semua Rasio Media Sosial** (1:1, 16:9, 9:16, 4:5, 3:4, dll) serta input ukuran **Custom** secara manual (Width x Height).
+
+### B. Konfigurasi Generasi Gambar (Image Generation)
+- **Pilihan AI Image Generator (Gratis)**:
+  - **Pollinations.ai** (Utama).
+  - Hugging Face Inference API (termasuk model Stable Diffusion XL, Flux.1 Schnell, dll).
+  - Integrasi API ke layanan gratis pihak ketiga alternatif seperti Together.ai (Free Tier).
+- **Jumlah Generate**: Pilihan *dropdown* atau *chips* (1, 2, 3, 4, 6, 8, 9, 12, dan Custom). **Penting: Komponen "Jumlah Generate" ini diletakkan berdekatan atau tepat di atas tombol "Generate Gambar".**
+- **Style Selector**: Grid pemilih gaya berisi 12 kartu (tiap kartu memiliki ikon & skema warnanya):
+  `1. 2D Flat`, `2. 3D Render`, `3. Animated`, `4. Kawaii`, `5. Pixel Art`, `6. Neon Glow`, `7. Watercolor`, `8. Comic`, `9. Minimalist`, `10. Retro`, `11. Holographic`, `12. Emoji`.
+- **Toggle Background**: Switch On/Off untuk latar belakang Transparan (PNG), serta pemilih warna solid/Custom.
+
+### C. Input & Prompt Engineering
+- **Prompt Tidak Wajib**: Pengguna bisa langsung *generate* hanya dengan Referensi Gambar + Teks/Emoji.
+- **Textarea Deskripsi**: Dilengkapi dengan *Suggestion Pills* (Contoh: "Kucing lucu pakai topi astronaut").
+- **Alat Pemandu Prompt (AI Tools)**:
+  - **Tombol Bantuan AI**: Membuat deskripsi detail secara otomatis dalam bahasa Indonesia (bisa memilih mesin penggeraknya seperti Gemini, Groq, atau HF Chat).
+  - **Tombol Ide Inspirasi Acak**: Mengisi prompt dengan ide visual yang unik secara acak di bawah kotak prompt.
+- **Nama Stiker & Teks/Kata**:
+  - Kolom Input spesifik untuk nama objek dan Teks di stiker.
+  - **Emoji Picker**: Terintegrasi *emoji-picker* bergaya WA/Facebook dilengkapi fitur **pencarian** teks (*search bar*).
+- **Kustomisasi Teks**:
+  - Berbagai pilihan font.
+  - Posisi Teks (List dropdown: Atas, Tengah, Bawah, dll).
+
+### D. Fitur AI Lanjutan (Referencing & Style Transfer)
+- **Image Reference (ControlNet / Image-to-Image)**:
+  - Area *Upload* gambar referensi.
+  - Pilihan Penyesuaian Referensi (Checkbox/Radio): `Full`, `Wajah (Face)`, atau `Badan/Pakaian (Body)`.
+- **AI Style Transfer**:
+  - Mengambil stiker dari *Koleksi* dan menerapkan gaya stiker lain atau visual referensi.
+
+### E. Autentikasi Pengguna & Quota Generate (Database)
+- **Database & Auth Gratis**: Menggunakan **Supabase** (PostgreSQL + Auth gratis yang handal dan mudah diintegrasikan dengan Next.js).
+- **Sistem Quota / Limit Penggunaan**:
+  - **Guest Mode (Tanpa Login)**: Dibatasi maksimal **10 kali** generate. Pelacakan dapat menggunakan `localStorage` atau IP Session.
+  - **User Authenticated (Sudah Login)**: Mendapatkan kuota besar hingga **1000 kali** generate. Data kuota disimpan aman pada tabel `users` di Supabase. Login tidak diwajibkan, namun sangat dianjurkan untuk kuota yang lebih besar.
+
+### F. Manajemen Stiker & Koleksi (Galeri)
+- **Bagian "Koleksi Stiker" (Tepat di bawah Form)**:
+  - *Search Bar* untuk mencari nama stiker/prompt.
+  - Tombol pengubah *Layout* (Grid view, List view).
+  - **Hover Action** pada stiker: `View (Fullscreen)`, `Favorite (Heart)`, `Tambahkan ke Pack (+)`, `Download`, `Hapus`, dan `Edit Gambar`.
+- **Sticker Packs (Grup)**:
+  - Pengguna dapat membuat Pack. Bisa mengatur Nama Pack, Cover, urutannya, dan opsi **Download ZIP** pengarsipan seluruh stiker dalam satu Pack sekaligus.
+
+### G. Area Preview
+- Menyajikan *grid placeholder* persis sebanyak "Jumlah Generate" yang dipilih.
+- Saat selesai *generate*, pengguna memiliki tombol opsi **"Re-generate"** individual pada setiap gambar.
+- **High-Res Export**: Setiap gambar menyediakan tombol *Upscale* 5000px sebelum pengunduhan.
+
+### H. Mode Editor Gambar Lanjutan (Advanced Editor)
+- **Akses Editor**: Berada bersebelahan dengan fungsionalitas Galeri. Pengguna dapat memilih gambar dari Galeri atau mengunggah gambar dari perangkat (Upload).
+- **Fitur Pengeditan Inti**:
+  - Penambahan teks (dengan opsi font) dan stiker/emoji (*overlay*).
+  - **Penghapusan Latar Belakang (Remove BG)**: Secara otomatis (AI *client-side* seperti `@imgly/background-removal` atau via API) menjadi transparan.
+  - **Manual Eraser**: Penghapus kuas (*brush eraser*) untuk menghapus background area tertentu secara manual.
+  - Fitur pengeditan umum (rotasi, *crop*, filter warna, dll layaknya aplikasi editor gambar).
+  - Memanfaatkan *Canvas API* (atau pustaka interaktif seperti `fabric.js` atau `konva`).
+
+---
+
+## 3. Struktur Halaman
+1. **Home (Generator)**: Tempat utama *form generation*, *preview*, *Style Selector*, dan auth status.
+2. **Gallery & Packs**: Koleksi stiker secara luas dan manajemen *Sticker Packs*.
+3. **Editor**: Ruang kerja kanvas editor gambar tingkat lanjut.

@@ -1,0 +1,43 @@
+# Task List: Veroz Generator (Advanced)
+
+- [x] Fase 1: Setup Framework & UI Futuristik Dasar
+  - [x] Inisialisasi Proyek Next.js + Tailwind CSS (package.json, tsconfig, postcss, next.config)
+  - [x] Setup Konfigurasi Tema Warna (Gradient Ungu-Pink-Biru & Dark Mode) — globals.css, tailwind.config
+  - [x] Konfigurasi struktur UI (Glass Card, Framer Motion, animasi blob background)
+  - [x] Setup Navigasi utama (Navbar dengan animated tabs, quota bar, mobile tabs)
+  - [x] types.ts, utils.ts (15+ rasio sosmed), supabase.ts, Zustand store
+  - [x] Semua komponen UI: StyleSelector, PromptArea, StickerTextInput, ReferenceUpload, BackgroundToggle, GenerateControls, PreviewGrid, Gallery
+  - [x] API routes: /api/optimize (Gemini+Groq+fallback) & /api/generate (Pollinations+HF FLUX)
+  - [x] Main page.tsx (Generator view + Gallery view + Editor placeholder)
+  - [/] npm install dependencies
+- [ ] Fase 2: Autentikasi Pengguna & Database (Supabase)
+  - [ ] Setup Proyek Supabase (Postgres & Auth)
+  - [ ] Buat Tabel `User` dan Sistem Limit Quota (10 Guest / 1000 Logged In)
+  - [ ] Integrasikan Login UI (Google/Email) & sistem pencegat/handler Quota
+- [ ] Fase 3: Manajemen State (IndexedDB + Zustand)
+  - [ ] Persiapkan `Store` State untuk Form Settings, History (Lokal)
+  - [ ] Relasi logika state dengan Auth (Guest vs Logged In)
+- [ ] Fase 4: Komponen Area Form & AI Tools (Bagian Atas)
+  - [ ] Komponen Layout Rasio Gambar
+  - [ ] Komponen `Style Selector` (Grid 12 style)
+  - [ ] Textarea Prompt (Suggestions, Tombol Bantuan AI, Ide Acak)
+  - [ ] Area Input Nama/Teks/Emoji & Format Font/Posisi
+  - [ ] Pilihan AI Generator (Pollinations, HF, dll) & Tombol **Generate** (bersama Posisi Jumlah Generate)
+- [ ] Fase 5: Referensi Gambar & ControlNet (Tengah)
+  - [ ] Modul Upload Gambar Referensi Karakter (Full, Wajah, Pakaian)
+  - [ ] Toggle Transparansi Latar & Pemilih Warna
+- [ ] Fase 6: Integrasi API Generation & Preview (Bawah Pertama)
+  - [ ] Setup API Rute di Server-side
+  - [ ] Logic Eksekusi Pembuatan Gambar dengan Quota Handler
+  - [ ] Grid Layout Preview sesuai "Jumlah Generate" & Re-generate per-item
+- [ ] Fase 7: Sistem Koleksi, Style Transfer, & Ekspor (Layout Bawah / Galeri)
+  - [ ] Bagian Koleksi Stiker (Grid/List, Kolom Pencarian, Aksi Hover)
+  - [ ] AI Style Transfer menggunakan referensi galeri
+  - [ ] Manajemen Sticker Pack & Integrasi ZIP Download
+  - [ ] Fitur Upscale Gambar (Ekspor 5000px)
+- [ ] Fase 8: Mode Editor Lanjutan (Advanced Image Editor)
+  - [ ] Pembuatan Halaman/Tab "Editor" terpisah di sebelah Gallery
+  - [ ] Implementasi Pustaka Kanvas (Fabric.js / Konva / native) & Impor Gambar
+  - [ ] Integrasi alat Hapus Background (Otomatis AI & Manual Eraser Tool)
+  - [ ] Fitur Penambahan Teks & Stiker/Emoji (Overlay)
+  - [ ] Fitur Editor Umum (Crop, Rotasi, Filter) & Ekspor Gambar Edit
